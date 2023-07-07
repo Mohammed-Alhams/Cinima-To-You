@@ -215,7 +215,7 @@ fun <T> CarouselSlider(
                     val pageOffset =
                         ((pagerState.currentPage - currentPage) + pagerState.currentPageOffsetFraction)
                             .absoluteValue
-                    alpha = 1f - pageOffset.coerceIn(0f, 0.8f)
+                    alpha = 1f - pageOffset.coerceIn(0f, 0.5f)
                     scaleY = 1f - pageOffset.coerceIn(0f, 0.1f)
                     scaleX = 1f - pageOffset.coerceIn(0f, 0.1f)
                 }
