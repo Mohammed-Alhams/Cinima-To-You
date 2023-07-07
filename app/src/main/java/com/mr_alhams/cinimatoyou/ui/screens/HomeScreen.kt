@@ -79,7 +79,7 @@ fun HomeScreen(
 
         Box(
             modifier = Modifier
-                .height(500.dp)
+                .height(550.dp)
                 .fillMaxWidth()
         ) {
 
@@ -126,12 +126,12 @@ fun HomeScreen(
                     }
                 }
 
-                CarouselSlider(pagerState, images) {
+                CarouselSlider(pagerState, images, modifier = Modifier.padding(top = 32.dp)) {
                     MovieCard(
                         painterResource(id = images[it]),
                         modifier = Modifier
                             .width(300.dp)
-                            .height(450.dp)
+                            .height(500.dp)
                     ) {
                         navController.navigate("detailsScreen")
                     }
@@ -140,12 +140,12 @@ fun HomeScreen(
 
         }
 
-        SpacerVertical24()
         Row(
-            modifier = Modifier.padding(top = 8.dp)
+            modifier = Modifier.padding(top = 24.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
-                imageVector = Icons.Outlined.Info,
+                painter = painterResource(id = R.drawable.clock),
                 contentDescription = null,
                 modifier = Modifier
                     .size(24.dp)
@@ -158,16 +158,14 @@ fun HomeScreen(
             )
         }
 
-        SpacerVertical24()
         Text(
             text = title,
             style = titleLarge,
-            modifier = Modifier.fillMaxWidth(0.8f)
+            modifier = Modifier.fillMaxWidth(0.8f).padding(16.dp)
         )
-        SpacerVertical24()
-        ChipsList(categories)
+        ChipsList(categories, modifier = Modifier.padding(top = 8.dp))
         Spacer(modifier = Modifier.weight(1f))
-        BottomNavBar(modifier = Modifier.padding(16.dp)) {
+        BottomNavBar(modifier = Modifier.padding(4.dp, bottom = 8.dp)) {
             BottomNavBarItem(isSelected = true, painter = painterResource(id = R.drawable.video)) {
 
             }
@@ -199,13 +197,14 @@ fun HomeScreen(
 fun <T> CarouselSlider(
     pagerState: PagerState,
     state: List<T>,
+    modifier: Modifier = Modifier,
     content: @Composable (index: Int) -> Unit
 ) {
     HorizontalPager(
         state = pagerState,
         pageCount = state.size,
         contentPadding = PaddingValues(horizontal = 56.dp),
-        modifier = Modifier.padding(top = 24.dp)
+        modifier = modifier
     ) { currentPage ->
         Box(
             modifier = Modifier
